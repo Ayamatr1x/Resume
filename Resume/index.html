@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My_Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+        /* Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f9d976, #f39f86);
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        #intro {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 40px;
+        }
+
+        #intro h1 {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+        }
+
+        /* Navigation */
+        #sidebar {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 40px;
+        }
+
+        #sidebar nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        #sidebar nav li {
+            margin: 0 10px;
+        }
+
+        #sidebar nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: 700;
+        }
+
+        #sidebar nav a:hover {
+            background-color: #f39f86;
+            color: #fff;
+        }
+
+        /* Main Content */
+        #wrapper {
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            color: #f39f86;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        li::before {
+            content: '\2022';
+            color: #f39f86;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        /* Footer */
+        #three {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 40px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            #sidebar nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #sidebar nav li {
+                margin: 10px 0;
+            }
+        }
+
+    </style>
+</head>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Smooth scroll function
+        function smoothScroll(target, duration) {
+            const targetElement = document.querySelector(target);
+            const targetPosition = targetElement.getBoundingClientRect().top;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = ease(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function ease(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+
+        // Add click event listeners to each navigation link
+        const navLinks = document.querySelectorAll('#sidebar nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                const duration = 1000; // Adjust scrolling duration here
+                smoothScroll(target, duration);
+            });
+        });
+
+        // Function to update the live view counter
+        function updateViewCounter() {
+            // For demonstration, let's increment the counter by 1 every 5 seconds
+            const counterElement = document.getElementById('view-counter');
+            let count = parseInt(counterElement.innerText);
+            count++;
+            counterElement.innerText = count;
+        }
+
+        // Call updateViewCounter function every 5 seconds
+        setInterval(updateViewCounter, 5000);
+    });
+</script>
+
+<body class="is-preload">
+
+<!-- Sidebar -->
+<section id="sidebar">
+    <div class="inner">
+        <nav>
+            <ul>
+                <li><a href="#intro">Welcome</a></li>
+                <li><a href="#one">Work Experience & Personal Projects</a></li>
+                <li><a href="#two">Skills </a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Intro -->
+    <section id="intro" class="wrapper style1 fullscreen fade-up">
+        <div class="inner">
+            <h1>Ayam Kaushik</h1>
+            <p>Skilled software developer proficient in web development and cloud computing. Experienced in utilizing cutting-edge technologies like Unity, Google Cloud Platform, and Google Maps API to build innovative solutions. Adept at implementing DevOps practices and containerizing applications with Docker. Proven ability to deliver high-quality work and contribute to projects driving technological advancements.</p>
+        </div>
+    </section>
+
+    <!-- One -->
+    <section id="one" class="wrapper style2 spotlights">
+        <section>
+            <div class="content">
+                <div class="inner">
+                    <h2>One Immersive</h2><p>(May 2023 - July 2023)</p>
+                    <ul>
+                        <li>Developed interactive augmented reality app using Unity, integrating Google Cloud services and Google apps API.</li>
+                        <li>Implemented AR features leveraging Google’s AR Core for enhanced user experience</li>
+                        <li>Acquired proficiency in Unity development, Google Cloud Platform, and Google Maps API</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="content">
+                <div class="inner">
+                    <h2>2048 Game</h2><p>(03/2024-03/2024)</p>
+                    <ul>
+                        <li>Developed a playable 2048 game using web technologies</li>
+                        <li>Implemented DevOps practices for a streamlined workflow</li>
+                        <li>Utilized GitHub for version control and collaboration</li>
+                        <li>Leveraged Docker containers for consistent packaging and deployment.</li>
+                        <li>Used App engine to deploy the game onto the cloud</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="content">
+                <div class="inner">
+                    <h2>Vprofile project </h2><p>(01/2024 - 01/2024)</p>
+                    <ul>
+                        <li>Developed a complex web application environment: Successfully deployed a multi-server web stack on a local environment encompassing five separate servers.</li>
+                        <li>Integrated key technologies: Seamlessly incorporated NGINX, Apache, RabbitMQ, MySQL, and Tomcat to establish a comprehensive infrastructure for web application development and testing.</li>
+                        <li>Performance optimization: Meticulously configured each server to maximize performance and resource allocation, resulting in a robust and efficient system.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Two -->
+    <section id="two" class="wrapper style3 fade-up">
+        <div class="inner">
+            <h2>Skills</h2>
+            <p></p>
+            <div class="features">
+                <section>
+                    <h3>Technical</h3>
+                    <p>HTML, CSS, JavaScript, Python, Maven, Git, Google Cloud, Linux, Bash, Cloud Architecture, Data Analytics, Machine Learning, Artificial Intelligence</p>
+                </section>
+                <section>
+                    <h3>Soft Skills</h3>
+                    <p>Communication, Problem Solving, Adaptability, Time management, Initiative</p>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Three -->
+    <section id="three" class="wrapper style1 fade-up">
+        <div class="inner">
+            <div class="split style1">
+                <section>
+                    <form method="post" action="#"></form>
+                </section>
+                <section>
+                    <ul class="contact">
+                        <p>
+                            <h3>Address</h3>
+                            <span>Manipal University Hostel<br />Jaipur(303007), Rajasthan<br />India</span>
+                        </p>
+                        <p>
+                            <h3>Email</h3>
+                            <a href="mailto:ayamkaushik34@gmail.com">ayamkaushik34@gmail.com</a>
+                        </p>
+                        <p>
+                            <h3>Phone</h3>
+                            <span>(+91) 7330986163</span>
+                        </p>
+                        <p>
+                            <h3>Social</h3>
+                            <ul class="icons">
+                                <p><a href="https://github.com/Ayamatr1x" class="icon brands fa-github"><span class="label">GitHub</span></a></p>
+                                <p><a href="https://www.linkedin.com/in/ayamkaushik" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></p>
+                            </ul>
+                        </p>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live View Counter -->
+    <section id="live-counter" class="wrapper style1 fade-up">
+        <div class="inner">
+            <h3>Live View Counter: <span id="view-counter">0</span></h3>
+        </div>
+    </section>
+
+</div>
+
+<!-- JavaScript for smooth scrolling and live view counter -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Smooth scroll function
+        function smoothScroll(target, duration) {
+            const targetElement = document.querySelector(target);
+            const targetPosition = targetElement.getBoundingClientRect().top;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = ease(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function ease(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+
+        // Add click event listeners to each navigation link
+        const navLinks = document.querySelectorAll('#sidebar nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                const duration = 1000; // Adjust scrolling duration here
+                smoothScroll(target, duration);
+            });
+        });
+
+        // Function to update the live view counter
+        function updateViewCounter() {
+            // For demonstration, let's increment the counter by 1 every 5 seconds
+            const counterElement = document.getElementById('view-counter');
+            let count = parseInt(counterElement.innerText);
+            count++;
+            counterElement.innerText = count;
+        }
+
+        // Call updateViewCounter function every 5 seconds
+        setInterval(updateViewCounter, 5000);
+    });
+</script>
+
+</body>
+</html>
